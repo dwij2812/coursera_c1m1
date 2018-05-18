@@ -47,33 +47,80 @@ void main() {
 
  
 void sort_array(unsigned char array[] , unsigned int size ){
-
+	int i , index , max_index = -1 , max  = -1, j , temp;
+	for (i = 0 ; i< (size - 1) ;i++){
+		index = i ;
+		for(j = index ; j< size  ;j++){
+			if(array[j] > max){ 
+				max_index = j;
+				max = array[j];
+			} 
+		}
+		
+		temp = array[index];
+		array[index] = max;
+		array[max_index] = temp ;
+		max = -1 ;
+	}
 }
 
 
 unsigned char find_maximum(unsigned char array[] , unsigned int size ){
 	// this function will make use of sorted array
+	return array[0];
 }
 
 
 unsigned char find_minimum(unsigned char array[] , unsigned int size ){
 	// this function will make use of sorted array
+	return array[size - 1];
 }
 
 
 unsigned char find_mean(unsigned char array[] , unsigned int size ){
+
+	int i,sum = 0;
+	for(i = 0 ; i < size ;i++){
+		sum += array[i];
+	}
+	return sum/size;
 }
 
 
 unsigned char find_median(unsigned char array[] , unsigned int size ){
 	// this function will make use of sorted array
+	if ((size % 2) == 1) return array[size/2]; // if dataset has odd number of members
+	else { // in case of even numbers , will return mean of 2 middle members of sorted dataset
+		return ((array[size/2] + array[(size/2) - 1]) / 2);
+	}
 }
 
 
 void print_statistics(unsigned char array[] , unsigned int size){
+	
+	printf("the maximum of dataset :\n");
+	printf("%d\n",find_maximum(array ,size));	
+	printf("\n\n");
+
+	printf("the minimum of dataset :\n");
+	printf("%d\n",find_minimum(array ,size));	
+	printf("\n\n");
+
+	printf("the mean of dataset :\n");
+	printf("%d\n",find_mean(array ,size));	
+	printf("\n\n");
+
+	printf("the median of dataset :\n");
+	printf("%d\n",find_median(array ,size));	
+	printf("\n\n");
 }
 
 
 void print_array(unsigned char array[] , unsigned int size ){
+	int i;
+	printf("the sorted array:\n");
+	for(i = 0 ;i < size ;i++){
+		printf("\t%d",array[i]);
+	}
+	printf("\n\n");
 }
-
